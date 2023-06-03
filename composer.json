@@ -1,0 +1,15 @@
+{
+    "name": "mistal/bowl",
+    "description": "Testy",
+    "autoload": {
+        "psr-4": {
+            "Mistal\\Bowl\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mistal"
+        }
+    ],
+    "require": {}
+}
