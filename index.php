@@ -73,19 +73,19 @@ function playGame()
 {
     $game = new Game();
 
-    echo "Gra w krêgle\n";
+    echo "Gra w krÄ™gle\n";
 
     for ($frame = 1; $frame <= 10; $frame++) {
         echo "Runda $frame\n";
 
         do {
-            echo "Rzut 1 - Podaj liczbê przewróconych krêgli (0-10): ";
+            echo "Rzut 1 - Podaj liczbÄ™ przewrÃ³conych krÄ™gli (0-10): ";
             $pins1 = intval(readline());
         } while ($pins1 < 0 || $pins1 > 10);
 
         $game->roll($pins1);
         $score = $game->getScore();
-        echo "Aktualna liczba punktów: $score\n";
+        echo "Aktualna liczba punktÃ³w: $score\n";
 
         if ($pins1 === 10) {
             echo "Strike!\n";
@@ -93,13 +93,13 @@ function playGame()
         }
 
         do {
-            echo "Rzut 2 - Podaj liczbê przewróconych krêgli (0-" . (10 - $pins1) . "): ";
+            echo "Rzut 2 - Podaj liczbÄ™ przewrÃ³conych krÄ™gli (0-" . (10 - $pins1) . "): ";
             $pins2 = intval(readline());
         } while ($pins2 < 0 || $pins2 > (10 - $pins1));
 
         $game->roll($pins2);
         $score = $game->getScore();
-        echo "Aktualna liczba punktów: $score\n";
+        echo "Aktualna liczba punktÃ³w: $score\n";
 
         if (($pins1 + $pins2) === 10) {
             echo "Spare!\n";
@@ -108,25 +108,28 @@ function playGame()
 
     echo "\nKoniec gry\n";
     $score = $game->getScore();
-    echo "Punkty zdobyte w ka¿dej rundzie:\n";
+    echo "Punkty zdobyte w kaÅ¼dej rundzie:\n";
 
     $rolls = $game->rolls;
 
-    foreach ($rolls as $frame => $pins) {
-        echo "Runda " . ($frame + 1) . ": " . $pins . " punktów\n";
+    for ($i = 0; $i < count($rolls); $i += 2) {
+        $frame = ($i / 2) + 1;
+        $roll1 = $rolls[$i];
+        $roll2 = isset($rolls[$i + 1]) ? $rolls[$i + 1] : '';
+        echo "Runda $frame: $roll1 $roll2 punktÃ³w\n";
     }
 
     $finalScore = $game->getScore();
-    echo "Wynik koñcowy: $finalScore punktów\n";
+    echo "Wynik koÅ„cowy: $finalScore punktÃ³w\n";
 }
 
 do {
     playGame();
 
-    echo "Czy chcesz zagraæ ponownie? (T/N): ";
+    echo "Czy chcesz zagraÄ‡ ponownie? (T/N): ";
     $choice = strtoupper(readline());
 } while ($choice === "T");
 
-echo "Dziêkujemy za grê!";
+echo "DziÄ™kujemy za grÄ™!";
 
 ?>
